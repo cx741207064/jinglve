@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>GET VIDEO</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+	<input type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()" />
+	<video id="video" width="500px" height="500px" autoplay="false"></video>
+	<canvas id="canvas" width="500px" height="500px"></canvas>
+    <input type="button" onclick="videoStream()" value="记录流" >
+    <input type="button" onclick="createVideo()" value="生成" >
+<a id="a">下载</a>
+	<script>
+        let promise
+        let video
+        var mediaStream
+        function getMedia() {
+            let constraints = {
+                video: {width: 500, height: 500},
+                audio: true
+            };
+            //获得video摄像头区域
+             video = document.getElementById("video");
+            //这里介绍新的方法，返回一个 Promise对象
+            // 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+            // then()是Promise对象里的方法
+            // then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+            // 避免数据没有获取到
+             promise = navigator.mediaDevices.getUserMedia(constraints);
+            promise.then(function (MediaStream) {
+                video.srcObject = MediaStream;
+                mediaStream=MediaStream
+                //MediaStream.getVideoTracks()[0].stop()
+                video.play();
+            });
+        }
+ 
+      function takePhoto() {
+      //获得Canvas对象
+      let video = document.getElementById("video");
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, 500, 500);
+      }
+
+      let allChunks = []
+      let format='video/webm;codecs=vp9'
+       async function videoStream(){
+let localStream=await navigator.mediaDevices.getUserMedia({
+video:true
+})
+ video=document.querySelector('video')
+video.srcObject=localStream
+video.autoplay=false
+video.onloadedmetadata=function(e){
+//video.play()
+
+}
+let mediaRecorder=new MediaRecorder(localStream,{mimeType:format} );
+mediaRecorder.ondataavailable=function(blob){
+    allChunks.push(blob.data)
+}
+mediaRecorder.start()
+setTimeout(function(){
+    mediaRecorder.stop()
+},5000)
+}
+
+function createVideo(){
+  var link=document.getElementsByTagName("a")[0]
+  var blob=new Blob(allChunks);
+    const downloadUrl = window.URL.createObjectURL(blob);
+link.href = downloadUrl;
+link.download = 'media.mp4';
+
+}
+</script>
+</body>
+</html>

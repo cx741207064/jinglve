@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <title>视频直播测试</title>
+  <meta charset="utf-8">
+  <link href="http://vjs.zencdn.net/5.5.3/video-js.css" rel="stylesheet">
+  <!-- If you'd like to support IE8 -->  
+  <!-- <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script> -->
+</head>
+<body>
+  <h1>直播测试</h1>
+  <label>直播码</label>
+  <input id="zhiboma" value="rtmp://localhost/live" type="text" />
+  <label>密钥</label>
+  <input id="miyao" value="123" type="text" />
+
+  <input type="button" value="换源" onclick="play()" />
+<hr>
+ <video id="my-video" class="video-js" controls preload="auto" width="640" height="300"
+ poster="" data-setup="{}">
+    <p class="vjs-no-js">播放视频需要启用 JavaScript，推荐使用支持HTML5的浏览器访问。
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+ </video>
+ <a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a>
+ <script src="http://vjs.zencdn.net/5.5.3/video.js"></script>
+ <script>
+   var video
+
+   function play(){
+    var zhiboma=document.getElementById("zhiboma")
+   var miyao=document.getElementById("miyao")
+
+
+   video=videojs('my-video')
+   video.src=zhiboma.value+'/'+miyao.value
+   video.play()
+   }
+
+   function init(){
+    videojs('my-video', {
+  sources: [{
+    src: zhiboma.value+'/'+miyao.value,
+    type: 'rtmp/flv'
+  }]
+})
+
+   }
+
+   init()
+ </script>
+</body>
+</html>

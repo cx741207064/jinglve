@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+    "**/obj": true,
+    "**/bin": true,
+  },
+  "editor.wordWrap": "bounded",
+  "update.mode": "manual",
+}

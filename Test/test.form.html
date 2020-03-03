@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title></title>
+            <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+    </head>
+    <body>
+        <form action="http://localhost:57988" method="POST" >
+            <input name="cx" type="text" value="cs">
+            <input name="value" type="text" value="crcr">
+
+            <input type="submit" value="提交" >
+        </form>
+
+        <input type="button" onclick="test()" value="test">
+    </body>
+    <script>
+        function test(){
+        var d={
+            "cx":"123"
+        }
+        //var d="{'cx':'123'}"
+    $.ajax({
+        type: "POST",
+		url: "http://localhost:57988/sbzs-cjpt-web/biz/sbzs/fjssb/xInitData",
+		dataType: "json",
+		contentType: "application/json",
+		data: JSON.stringify(d),
+		async: false,
+		success: function (data) { 
+            var a
+        }
+           })
+    }
+    </script>
+</html>

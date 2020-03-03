@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+
+    </body>
+    <script src="axios/dist/axios.js" ></script>
+    <script>
+
+// Make a request for a user with a given ID
+axios.get('Error.html')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+
+  const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+
+// Send a POST request
+axios({
+  method: 'get',
+  url: 'Error.html',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+}).then(function(response){
+
+});
+    </script>
+</html>

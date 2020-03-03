@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <title>视频直播测试</title>
+  <meta charset="utf-8">
+  <!-- If you'd like to support IE8 -->  
+  <!-- <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script> -->
+  <style>
+  .danmu{
+    width:100px;
+    position:absolute;
+    background-color: white;
+    animation: test 5s linear;
+    animation-fill-mode:both;
+}
+@keyframes test{
+    from{
+        margin-left: calc(1200px - 100px);
+        /* transform: translateX(calc(100vw - 100px)); */
+    }
+    to{
+        /* margin-left: 0; */
+        transform: translateX(-100px);
+/* visibility:hidden; */
+    }
+}
+
+.danmu2{
+    width:100px;
+    position:absolute;
+    background-color: white;
+    animation: test2 5s linear;
+    animation-fill-mode:both;
+}
+@keyframes test2{
+    from{
+        transform: translateX(calc(100vw - 100px - 16px));
+    }
+    to{
+        /* margin-left: 0; */
+        transform: translateX(-100px);
+/* visibility:hidden; */
+    }
+}
+
+.channel{
+width:1200px;
+height:50px;
+/* top:50px; */
+position: relative;
+}
+</style>
+</head>
+<body>
+  <h1>直播测试</h1>
+  <label>直播码</label>
+  <input id="zhiboma" value="http://localhost:8080/live" type="text" />
+  <label>密钥</label>
+  <input id="miyao" value="123" type="text" />
+<input type="button" value="弹幕" onclick="danmu2()" />
+<input type="button" value="网页全屏" onclick="wangyefull()" />
+
+<hr>
+ <script src="node_modules/flv.js/dist/flv.js"></script>
+
+<div id="cx" style="width:1200px;overflow: hidden;">
+    <video style="width: 1200px;position:absolute" id="videoElement" muted></video>
+
+    <div id="channel0" class="channel">
+
+    </div>
+    <div id="channel1" class="channel">
+
+    </div>
+    <div id="channel2" class="channel">
+
+    </div>
+
+    <div id="test" style="width: 500px;overflow: hidden;background-color:transparent;position:absolute;">
+        <div id="cs" class="danmu">你好啊</div>
+    </div>
+    <div class="danmu">123</div>
+
+</div>
+ <script>
+   var zhiboma=document.getElementById("zhiboma")
+   var miyao=document.getElementById("miyao")
+     if (flvjs.isSupported()) {
+         var videoElement = document.getElementById('videoElement');
+         var flvPlayer = flvjs.createPlayer({
+             type: 'flv',
+             //isLive: true,
+             url: zhiboma.value+'/'+miyao.value+'.flv'
+         });
+         flvPlayer.attachMediaElement(videoElement);
+         flvPlayer.load();
+         flvPlayer.play();
+     }
+     function danmu(){
+      var div1= document.createElement("div");
+       div1.classList.add("danmu")
+       div1.innerHTML="加油"
+       var parent=document.getElementById("cx")
+        parent.insertBefore(div1,parent.childNodes[0]);
+        div1.addEventListener("animationend",function(){
+            //div1.remove()
+        })
+     }
+     function danmu2(){
+         var num=0
+      var ran=   Math.random()*100
+      if(ran<33){
+num=0
+      }
+      else if(ran>=33&&ran<=66){
+          num=1;
+      }
+      else{
+          num=2
+      }
+      var div1= document.createElement("div");
+       div1.classList.add("danmu2")
+       div1.innerHTML="加油"
+       var parent=document.getElementById("channel"+num)
+        parent.insertBefore(div1,parent.childNodes[0]);
+        div1.addEventListener("animationend",function(){
+            //div1.remove()
+        })
+     }
+
+     function wangyefull(){
+         var a=document.getElementById("cx")
+         var b=document.getElementById("videoElement")
+a.style.width=(window.screen.width-8*2)+"px"
+b.style.width=(window.screen.width-8*2)+"px"
+a.style.position="fixed"
+     }
+ </script>
+ </body>
+</html>

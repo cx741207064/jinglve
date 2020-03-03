@@ -1,0 +1,18 @@
+[gui]
+	encoding = utf-8
+	gcwarning = false
+	recentrepo = E:/Projects/BeiJing
+	recentrepo = E:/Projects/BeiJingCore
+	recentrepo = E:/Projects/TongYong
+	recentrepo = E:/Projects/GuangXi
+	recentrepo = E:/Projects/HuNanCore
+	recentrepo = E:/Projects/HuNan
+	recentrepo = E:/Projects/GuiZhou
+	recentrepo = E:/Projects/GuiZhouCore
+	recentrepo = E:/Projects/HeBei
+	recentrepo = E:/Projects/ExamSystem
+[user]
+	email = 741207064@qq.com
+	name = cx
+[core]
+	excludesfile = C:/Users/Administrator/.gitignore

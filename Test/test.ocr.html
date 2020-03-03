@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!-- v2 -->
+<script src='/tesseract.min.js' ></script>
+    </head>
+    <body>
+
+    </body>
+    <script >
+
+//import Tesseract from 'tesseract.js';
+
+const worker = Tesseract.createWorker({
+  workerPath: '/tesseract/worker.min.js',
+    langPath: '/tesseract/chi_sim.traineddata.gz',
+    corePath: '/tesseract/tesseract-core.wasm.js',
+  logger: m => console.log(m)
+});
+
+(async () => {
+  await worker.load();
+  await worker.loadLanguage('chi_sim');
+  await worker.initialize('chi_sim');
+  await worker.setParameters({
+    //tessedit_char_whitelist: '0123456789X',
+  });
+  const { data: { text } } = await worker.recognize('pic/3.jpg');
+  console.log(text);
+  await worker.terminate();
+})();
+</script>
+</html>

@@ -1,0 +1,2 @@
+Install-Package Autofac.WebApi2 -Version 4.2.0
+Install-Package Autofac.Mvc5 -Version 4.0.2

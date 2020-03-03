@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+    $("#test").click(function(){
+alert(10)
+    })
+
+})
+
+function setPathname(){
+    $.cookie("123","12345cx",{domian:"localhost",path:"/"});
+    alert($.cookie("123"));
+}
+
+</script>
+</head>
+<body>
+<input type="button" value="设定新的路径" onclick="setPathname()" />
+<input id="test" type="button" value="test" />
+
+</body>
+</html>

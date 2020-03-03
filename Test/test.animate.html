@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    </head>
+    <style>
+    .slideOutRight {
+        transform:  translate3d(200%,0,0)
+}
+.danmu{
+    width:100px;
+    background-color: white;
+    animation: test 5s linear;
+    animation-fill-mode:both;
+}
+@keyframes test{
+    from{
+        /* margin-left: 500px; */
+        transform: translateX(500px);
+    }
+    to{
+        /* margin-left: 0; */
+        transform: translateX(-100px);
+/* visibility:hidden; */
+    }
+}
+</style>
+    <body>
+        <!-- <div id="cx" class="animated slideOutRight">
+              cxcc  <h1 >Example</h1>
+        </div> -->
+        <div id="test" style="width: 500px;overflow: hidden;background-color: black;margin-left: 50px;">
+        <div id="cs" class="danmu">你好啊</div>
+    </div>
+    </body>
+    <script>
+       var div1= document.createElement("div");
+       div1.classList.add("danmu")
+       div1.innerHTML="加油"
+        document.getElementById("test").appendChild(div1);
+        div1.addEventListener("animationend",function(){
+            div1.remove()
+        })
+    </script>
+</html>
